@@ -21,6 +21,7 @@ def get_well_info(root):
     """
     # create dictionary 
     d = {}
+    #loop through wells and pull out information
     for child in root.findall('Wells'):
        for well in child.iter('Well'):
            d1 = {}
