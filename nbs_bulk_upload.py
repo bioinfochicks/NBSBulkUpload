@@ -14,13 +14,12 @@ root = tree.getroot()
     # Loop for find children under fixed_annotation
 d = {}
     
-for child in root.find('Wells'):
-    for well in child.iter():
-        print(well.tag, well.attrib)
-    
-        # Find genomic sequence child
-  #      genomic = child.find('sequence').text
-  #  return genomic
-
-   #   <Index>0</Index>
-    #  <SampleBarcode>170872101</SampleBarcode>
+for child in root.findall('Wells'):
+    for well in child.iter('Well'):
+        d1 = {}
+        d1['SampleBarcode'] = well.find('SampleBarcode').text
+        d1['IsBad'] = well.find('IsBad').text
+        d1['RequestedDisksPerWell'] = well.find('RequestedDisksPerWell').text
+        d1['PunchedDisksPerWell'] = well.find('PunchedDisksPerWell').text
+        d[well.find('Index').text] = d1
+print(d)
